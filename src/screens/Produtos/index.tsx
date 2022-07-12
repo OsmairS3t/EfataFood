@@ -1,11 +1,9 @@
 import React from 'react';
 
+import { Header } from '../../components/Header';
+
 import { 
   Container,
-  Header,
-  Logotipo,
-  Title,
-  Icon,
   Card,
   CardImage,
   CardGroup,
@@ -18,14 +16,10 @@ import {
 export function Produtos() {
   return (
     <Container>
-      <Header>
-        <Logotipo source={require('../../assets/logotipoeb.png')} />
-        <Icon name='logout' size={30} />
-      </Header>
-      <Title>Produtos:</Title>
+      <Header icon='logout' title='PRODUTOS' />
 
       <Card>
-        <CardImage source={require('../../assets/pao-de-mel.png')} />
+        <CardImage source={require('../../assets/pao-de-mel.png')} style={{borderRadius: 50}} />
         <CardGroup>
           <CardGroupTitle>
             <CardTitle>Nome do Produto</CardTitle>

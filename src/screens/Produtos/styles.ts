@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-import { AntDesign } from '@expo/vector-icons';
 
 export const Container = styled.View`
   background-color: ${({theme})=>theme.colors.background};
@@ -7,29 +6,12 @@ export const Container = styled.View`
   flex: 1;
 `;
 
-export const Header = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-`;
-
-export const Logotipo = styled.Image`
-  width: 100px;
-  height: 100px;
-  `;
-
-export const Title = styled.Text`
-  color: ${({theme})=>theme.colors.text};
-  font-size: 20px;
-`;
-
-export const Icon = styled<any>(AntDesign)`
-  color: ${({theme})=>theme.colors.text};
-`;
-
 export const Card = styled.View`
+  height: 100px;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({theme})=>theme.colors.card};
 `;
 
 export const CardImage = styled.Image`
@@ -38,12 +20,13 @@ export const CardImage = styled.Image`
 `;
 
 export const CardGroup = styled.View`
-  padding: 10px;
+  //padding: 10px;
 `;
 
 export const CardGroupTitle = styled.View`
   flex-direction: row;
   justify-content: space-between;
+  //padding-right: 20px;
 `;
 
 export const CardTitle = styled.Text`

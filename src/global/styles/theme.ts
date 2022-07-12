@@ -1,6 +1,10 @@
 export default {
     colors: {
         background: '#010101',
+        backgroundInput: '#545454',
+        backgroundButton: '#4F4F4F',
+        card: '#545454',
+        primary: '#F2911B',
         title: '#c1c1c1',
         text: '#cccccc',
         attention: '#aa0000',
