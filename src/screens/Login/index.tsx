@@ -15,7 +15,7 @@ import {
   TextButtonSocial
 } from './styles';
 
-export function Home() {
+export function Login() {
   const navigation = useNavigation();
 
   function handleLogin() {

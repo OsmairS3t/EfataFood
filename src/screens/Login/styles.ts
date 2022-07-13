@@ -1,4 +1,4 @@
-import { Amount } from './../../components/CardSell/styles';
+import { Amount } from '../../components/CardSell/styles';
 import { TextInput } from 'react-native';
 import styled from 'styled-components/native';
 

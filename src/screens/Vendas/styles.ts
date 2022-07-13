@@ -12,13 +12,16 @@ export const GroupMain = styled.View``;
 export const Total = styled.View`
   height: 50px;
   padding: 10px;
-  background-color: ${({theme})=>theme.colors.text};
+  background-color: ${({theme})=>theme.colors.background};
+  border-top-width: 1px;
+  border-style: dashed;
+  border-color:  ${({theme})=>theme.colors.text};
   justify-content: center;
   align-items: center;
 `;
 
 export const TextTotal = styled.Text`
   font-size: 20px;
-  color: ${({theme})=>theme.colors.background};
+  color: ${({theme})=>theme.colors.text};
   font-family: ${({theme})=>theme.fonts.bold};
 `;
