@@ -5,6 +5,7 @@ export default {
         backgroundButton: '#4F4F4F',
         card: '#545454',
         primary: '#F2911B',
+        secondary: '#ba6702',
         title: '#c1c1c1',
         text: '#cccccc',
         attention: '#aa0000',

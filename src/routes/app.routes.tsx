@@ -24,7 +24,7 @@ export function AppRoutes() {
         options={{
           tabBarIcon: (({ size, color }) =>
             <MaterialIcons
-              name="square-foot"
+              name="fastfood"
               size={size}
               color={color}
             />
@@ -35,7 +35,7 @@ export function AppRoutes() {
         options={{
           tabBarIcon: (({ size, color }) =>
             <MaterialIcons
-              name="home"
+              name="attach-money"
               size={size}
               color={color}
             />

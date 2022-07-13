@@ -1,39 +1,31 @@
 import React from 'react';
 
 import { Header } from '../../components/Header';
+import { CardProduct } from '../../components/CardProduct';
 
 import { 
-  Container,
-  Card,
-  CardImage,
-  CardGroup,
-  CardGroupTitle,
-  CardTitle,
-  CardPrice,
-  CardIngredient
- } from './styles';
+  Container, 
+  GroupButton,
+  GroupButtonTitle,
+  ButtonNew, 
+  IconNew 
+} from './styles';
 
 export function Produtos() {
   return (
     <Container>
       <Header icon='logout' title='PRODUTOS' />
+      <GroupButton>
+        <GroupButtonTitle>
+          Novo
+        </GroupButtonTitle>
+        <ButtonNew>
+          <IconNew name='plus-circle' size={25} />
+        </ButtonNew>
+      </GroupButton>
 
-      <Card>
-        <CardImage source={require('../../assets/pao-de-mel.png')} style={{borderRadius: 50}} />
-        <CardGroup>
-          <CardGroupTitle>
-            <CardTitle>Nome do Produto</CardTitle>
-            <CardPrice>R$ 99,99</CardPrice>
-          </CardGroupTitle>
-          <CardIngredient>
-            Ingrediente 1
-            Ingrediente 2
-            Ingrediente 3
-            Ingrediente 4
-            Ingrediente 5
-          </CardIngredient>
-        </CardGroup>
-      </Card>
+      <CardProduct />
+
     </Container>
   )
 }

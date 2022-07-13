@@ -1,3 +1,4 @@
+import { Feather } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
@@ -6,38 +7,24 @@ export const Container = styled.View`
   flex: 1;
 `;
 
-export const Card = styled.View`
-  height: 100px;
+export const GroupButton = styled.View`
+  height: 50px;
   flex-direction: row;
+  justify-content: flex-end;
   align-items: center;
-  justify-content: center;
-  background-color: ${({theme})=>theme.colors.card};
 `;
 
-export const CardImage = styled.Image`
-  width: 80px;
-  height: 80px;
-`;
-
-export const CardGroup = styled.View`
-  //padding: 10px;
-`;
-
-export const CardGroupTitle = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  //padding-right: 20px;
-`;
-
-export const CardTitle = styled.Text`
+export const GroupButtonTitle = styled.Text`
+  font-family: ${({theme})=>theme.fonts.regular};
   color: ${({theme})=>theme.colors.text};
+  font-size: 18px;
+  margin-right: 8px;
 `;
 
-export const CardPrice = styled.Text`
-  color: ${({theme})=>theme.colors.text};
-`;
 
-export const CardIngredient = styled.Text`
+export const ButtonNew = styled.TouchableOpacity``;
+
+export const IconNew = styled<any>(Feather)`
   color: ${({theme})=>theme.colors.text};
 `;
 

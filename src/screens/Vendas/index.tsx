@@ -4,6 +4,7 @@ import { CardSell } from '../../components/CardSell';
 import { Header } from '../../components/Header'
 import {
     Container,
+    GroupMain,
     Total,
     TextTotal,
 } from './styles';
@@ -11,10 +12,13 @@ import {
 export function Vendas() {
     return (
         <Container>
-            <Header icon='logout' title='VENDAS' />
-            <CardSell />
+            <GroupMain>
+                <Header icon='logout' title='VENDAS' />
+                <CardSell />
+            </GroupMain>
+            
             <Total>
-                <TextTotal>Total: R$ 99,99</TextTotal>
+                <TextTotal>99 Vendas - Total: R$ 99,99</TextTotal>
             </Total>
         </Container>
     )

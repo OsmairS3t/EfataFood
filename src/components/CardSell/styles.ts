@@ -22,7 +22,8 @@ export const BtnMoney = styled.TouchableOpacity`
     width: 40px;
     height: 40px;
     padding: 10px;
-    background-color: ${({theme})=>theme.colors.text};
+    border: 1px solid ${({theme})=>theme.colors.background};
+    //background-color: ${({theme})=>theme.colors.text};
 `;
 
 export const IconMoney = styled<any>(Feather)``;
@@ -31,7 +32,8 @@ export const BtnCard = styled.TouchableOpacity`
     width: 40px;
     height: 40px;
     padding: 10px;
-    background-color: ${({theme})=>theme.colors.text};
+    border: 1px solid ${({theme})=>theme.colors.background};
+    //background-color: ${({theme})=>theme.colors.text};
 `;
 
 export const IconCard = styled<any>(Feather)``;

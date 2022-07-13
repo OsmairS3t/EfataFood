@@ -28,7 +28,7 @@ export function CardSell() {
                     <IconMoney name='dollar-sign' size={20} />
                 </BtnMoney>
                 <BtnCard>
-                    <IconCard name='credit-card' size={20} />
+                    <IconCard name='credit-card' size={18} />
                 </BtnCard>
             </GroupPay>
 
