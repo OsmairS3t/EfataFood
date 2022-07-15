@@ -4,6 +4,7 @@ export default {
         backgroundInput: '#545454',
         backgroundButton: '#4F4F4F',
         card: '#545454',
+        border: '#e2e2e2',
         primary: '#F2911B',
         secondary: '#ba6702',
         title: '#c1c1c1',

@@ -1,5 +1,3 @@
-import { Amount } from '../../components/CardSell/styles';
-import { TextInput } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
@@ -26,16 +24,6 @@ export const Title = styled.Text`
     color: ${({theme})=>theme.colors.title};
     font-family: ${({theme})=>theme.fonts.regular};
     font-size: 32px;
-`;
-
-export const Input = styled(TextInput)`
-    border: 1px solid transparent;
-    height: 70px;
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: ${({theme})=>theme.colors.backgroundInput};
-    color: ${({theme})=>theme.colors.text};
 `;
 
 export const Link = styled.Text`

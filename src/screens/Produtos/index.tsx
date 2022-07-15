@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useNavigation } from '@react-navigation/native';
 import { Header } from '../../components/Header';
 import { CardProduct } from '../../components/CardProduct';
 
@@ -12,6 +12,12 @@ import {
 } from './styles';
 
 export function Produtos() {
+  const navigation = useNavigation();
+
+  function handleNewProduct() {
+    navigation.navigate('cadastroprodutos');
+  }
+
   return (
     <Container>
       <Header icon='logout' title='PRODUTOS' />
@@ -19,7 +25,7 @@ export function Produtos() {
         <GroupButtonTitle>
           Novo
         </GroupButtonTitle>
-        <ButtonNew>
+        <ButtonNew onPress={handleNewProduct}>
           <IconNew name='plus-circle' size={25} />
         </ButtonNew>
       </GroupButton>
