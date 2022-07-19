@@ -1,4 +1,5 @@
 import React from "react";
+import { IProduto } from "../../utils/interface";
 
 import {
   Container,
@@ -10,24 +11,24 @@ import {
   CardIngredient
 } from './styles';
 
-export function CardProduct() {
+interface Props {
+  produto: IProduto;
+}
+
+export function CardProduct({produto}: Props) {
   return (
     <Container>
       <CardImage 
-        source={require('../../assets/pao-de-mel.png')} 
+        source={{uri:produto.foto}} 
         style={{ borderRadius: 50 }} 
       />
       <CardGroup>
         <CardGroupTitle>
-          <CardTitle>Pão de Mel</CardTitle>
-          <CardPrice>R$ 8,90</CardPrice>
+          <CardTitle>{produto.nome}</CardTitle>
+          <CardPrice>R$ {produto.preco}</CardPrice>
         </CardGroupTitle>
         <CardIngredient>
-          Mel, 
-          Farinha de trigo,
-          Leite,
-          Açúcar mascavo,
-          Chá de erva doce
+          {produto.ingredientes}
         </CardIngredient>
       </CardGroup>
     </Container>

@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import { Feather } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native';
+import { Button } from '../../../components/Button';
 
 export const Container = styled.View`
   background-color: ${({theme}) => theme.colors.background};
@@ -25,4 +26,17 @@ export const IconBack = styled<any>(Feather)`
 `;
 
 export const Fields = styled.View``;
+
+export const Upload = styled.View`
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 32px 0;
+`;
+
+export const PicImageButton = styled(Button)`
+  max-width: 150px;
+  margin-left: 32px;
+`;
 

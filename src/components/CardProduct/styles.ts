@@ -6,6 +6,7 @@ export const Container = styled.View`
   align-items: center;
   background-color: ${({theme})=>theme.colors.card};
   padding: 0px 10px;
+  margin-bottom: 10px;
 `;
 
 export const CardImage = styled.Image`

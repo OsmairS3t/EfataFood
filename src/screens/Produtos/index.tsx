@@ -5,6 +5,7 @@ import { CardProduct } from '../../components/CardProduct';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { keyProducts } from '../../utils/keystorage';
+import { products } from '../../utils/dataProducts';
 
 import { 
   Container, 
@@ -17,21 +18,29 @@ import { IProduto } from '../../utils/interface';
 import { FlatList, Text } from 'react-native';
 
 export function Produtos() {
+  //const [listProdutos, setListProdutos] = useState<IProduto[]>([]);
   const navigation = useNavigation();
-  const [produtos, setProdutos] = useState<IProduto[]>([]);
-  function handleNewProduct() {
+  
+function handleNewProduct() {
     navigation.navigate('cadastroprodutos');
   }
-  const getData = async () => {
+
+/* 
+  async function loadData() {
     try {
       const response = await AsyncStorage.getItem(keyProducts)
       const dataProducts:IProduto[] = response ? JSON.parse(response) : [];
-      setProdutos(dataProducts);
+      setListProdutos(dataProducts);
     } catch(e) {
       // error reading value
     }
   }
- 
+
+  useEffect(()=> {
+    loadData;
+  }, []);
+ */  
+
   return (
     <Container>
       <Header icon='logout' title='PRODUTOS' />
@@ -44,16 +53,14 @@ export function Produtos() {
         </ButtonNew>
       </GroupButton>
 
-      <CardProduct />
-      
-      {/* <FlatList 
-        data={produtos}
+      <FlatList 
+        data={products}
         style={{ flex: 1, width: '100%' }}
-        keyExtractor={(item) => item.nome}
+        keyExtractor={(item) => item.id}
         renderItem={({item}) => (
-          <Text>{item.nome}</Text>
+          <CardProduct produto={item} />
         )}
-      /> */}
+      /> 
 
     </Container>
   )
