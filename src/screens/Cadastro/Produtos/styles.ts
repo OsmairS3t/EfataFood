@@ -5,7 +5,7 @@ import { Button } from '../../../components/Button';
 
 export const Container = styled.View`
   background-color: ${({theme}) => theme.colors.background};
-  padding: 40px 10px 5px 10px;
+  padding-bottom: 5px;
   flex: 1;
 `;
 
@@ -17,15 +17,17 @@ export const Form = styled.View`
 export const GroupHeader = styled(TouchableOpacity)`
   margin: 10px 0px;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-start;
 `;
 
 export const IconBack = styled<any>(Feather)`
-  padding: 5px;
+  padding: 0px 15px;
   color: ${({ theme }) => theme.colors.text};
 `;
 
-export const Fields = styled.View``;
+export const Fields = styled.View`
+  padding: 0 15px;
+`;
 
 export const Upload = styled.View`
   width: 100%;

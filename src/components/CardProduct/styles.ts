@@ -4,9 +4,10 @@ export const Container = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: ${({theme})=>theme.colors.card};
-  padding: 0px 10px;
-  margin-bottom: 10px;
+  padding: 0px 5px;
+  margin: 5px 15px;
+  border-radius: 10px;
+  background-color: ${({theme})=>theme.colors.backgroundAux};
 `;
 
 export const CardImage = styled.Image`

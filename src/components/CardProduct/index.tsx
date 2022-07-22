@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { IProduto } from "../../utils/interface";
 
 import {
@@ -16,8 +16,10 @@ interface Props {
 }
 
 export function CardProduct({produto}: Props) {
+  console.log(produto)
+
   return (
-    <Container>
+    <Container key={produto.id}>
       <CardImage 
         source={{uri:produto.foto}} 
         style={{ borderRadius: 50 }} 

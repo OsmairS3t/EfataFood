@@ -15,10 +15,13 @@ export function AppRoutes() {
     <Navigator screenOptions={{
       headerShown: false,
       tabBarActiveTintColor: theme.colors.background,
-      tabBarActiveBackgroundColor: theme.colors.primary,
-      tabBarInactiveBackgroundColor: theme.colors.background,
+      tabBarActiveBackgroundColor: theme.colors.backgroundButton,
+      tabBarInactiveBackgroundColor: theme.colors.backgroundButtonOpacity,
       tabBarLabelPosition: 'beside-icon',
-
+      tabBarLabelStyle: {
+        fontFamily: theme.fonts.bold,
+        fontSize: 16
+      }
     }}>
       <Screen name="Produtos" component={Produtos}
         options={{
@@ -31,7 +34,7 @@ export function AppRoutes() {
           )
         }}
       />
-      <Screen name="vendas" component={Vendas}
+      <Screen name="Vendas" component={Vendas}
         options={{
           tabBarIcon: (({ size, color }) =>
             <MaterialIcons

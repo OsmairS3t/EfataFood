@@ -1,66 +1,61 @@
 import React, { useEffect, useState } from 'react';
+import { FlatList } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
+
 import { Header } from '../../components/Header';
 import { CardProduct } from '../../components/CardProduct';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { keyProducts } from '../../utils/keystorage';
-import { products } from '../../utils/dataProducts';
+import { IProduto } from '../../utils/interface';
 
-import { 
-  Container, 
+import {
+  Container,
   GroupButton,
   GroupButtonTitle,
-  ButtonNew, 
-  IconNew 
+  ButtonNew,
+  IconNew,
+  Message
 } from './styles';
-import { IProduto } from '../../utils/interface';
-import { FlatList, Text } from 'react-native';
 
 export function Produtos() {
-  //const [listProdutos, setListProdutos] = useState<IProduto[]>([]);
+  const [listProdutos, setListProdutos] = useState<IProduto[]>([]);
   const navigation = useNavigation();
-  
-function handleNewProduct() {
+
+  function handleNewProduct() {
     navigation.navigate('cadastroprodutos');
   }
 
-/* 
-  async function loadData() {
-    try {
-      const response = await AsyncStorage.getItem(keyProducts)
-      const dataProducts:IProduto[] = response ? JSON.parse(response) : [];
-      setListProdutos(dataProducts);
-    } catch(e) {
-      // error reading value
+  useEffect(() => {
+    async function loadData() {
+      const data = await AsyncStorage.getItem(keyProducts);
+      const formattedData:IProduto = JSON.parse(data!);
+      setListProdutos([
+        ...listProdutos,
+        formattedData
+      ]);
     }
-  }
-
-  useEffect(()=> {
-    loadData;
+    loadData();
   }, []);
- */  
 
   return (
     <Container>
       <Header icon='logout' title='PRODUTOS' />
       <GroupButton>
-        <GroupButtonTitle>
-          Novo
-        </GroupButtonTitle>
         <ButtonNew onPress={handleNewProduct}>
+          <GroupButtonTitle>Novo</GroupButtonTitle>
           <IconNew name='plus-circle' size={25} />
         </ButtonNew>
       </GroupButton>
 
-      <FlatList 
-        data={products}
-        style={{ flex: 1, width: '100%' }}
-        keyExtractor={(item) => item.id}
-        renderItem={({item}) => (
-          <CardProduct produto={item} />
-        )}
-      /> 
+      {/* {listProdutos && <Message>Não há produtos cadastrados.</Message>} */}
+        <FlatList
+          data={listProdutos}
+          style={{ flex: 1, width: '100%' }}
+          renderItem={({ item }) => (
+            <CardProduct produto={item} />
+          )}
+        />
 
     </Container>
   )

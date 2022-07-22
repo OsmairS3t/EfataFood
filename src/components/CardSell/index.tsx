@@ -2,11 +2,6 @@ import React from 'react';
 
 import {
     Container,
-    GroupPay,
-    BtnMoney,
-    IconMoney,
-    BtnCard,
-    IconCard,
     GroupProduct,
     ProductPhoto,
     SubGroupProduct,
@@ -23,15 +18,6 @@ import {
 export function CardSell() {
     return (
         <Container>
-            <GroupPay>
-                <BtnMoney>
-                    <IconMoney name='dollar-sign' size={20} />
-                </BtnMoney>
-                <BtnCard>
-                    <IconCard name='credit-card' size={18} />
-                </BtnCard>
-            </GroupPay>
-
             <GroupProduct>
                 <ProductPhoto 
                     source={require('../../assets/pao-de-mel.png')} 

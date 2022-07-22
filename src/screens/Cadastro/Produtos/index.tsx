@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import uuid from 'react-native-uuid';
+
 import { Button } from '../../../components/Button';
 import { Input } from '../../../components/Form/Input';
 import { Header } from '../../../components/Header';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import uuid from 'react-native-uuid';
+import { Photo } from '../../../components/Photo';
 
 import { keyProducts } from '../../../utils/keystorage'
 
@@ -18,16 +21,14 @@ import {
   Upload,
   PicImageButton
 } from './styles';
-import { Alert } from 'react-native';
-import { Photo } from '../../../components/Photo';
+import { IProduto } from '../../../utils/interface';
 
 export function CadastroProdutos() {
-  const [image, setImage] = useState('');
   const navitation = useNavigation();
   const [nome, setNome] = useState('');
   const [preco, setPreco] = useState(0);
   const [ingredientes, setIngredientes] = useState('');
-  const [foto, setFoto] = useState('');
+  const [image, setImage] = useState('');
 
   async function handlePickerImage() {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -45,22 +46,29 @@ export function CadastroProdutos() {
   }
 
   async function handleRegister() {
-    try {
-      const data = {
-        id: uuid.v4(),
-        nome,
-        preco,
-        ingredientes,
-        foto: image
-      }
-      await AsyncStorage.setItem(keyProducts, JSON.stringify(data));
-      Alert.alert('Produto cadastrado com sucesso!');
-      console.log(data)
-    } catch (error) {
-      Alert.alert('Não foi possivel cadastrar o produto!');
+    const newData = {
+      id: String(uuid.v4()),
+      nome,
+      preco,
+      ingredientes,
+      foto: image
     }
 
-    //limpar campos
+    try {
+      const recordedData = await AsyncStorage.getItem(keyProducts);
+      const currentData:IProduto[] = recordedData ? JSON.parse(recordedData) : [];
+      const formattedData:IProduto[] = [
+        ...currentData,
+        newData
+      ];
+
+      await AsyncStorage.setItem(keyProducts, JSON.stringify(formattedData));
+      Alert.alert('Produto cadastrado com sucesso!');
+      //limpar campos
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Não foi possivel cadastrar o produto!');
+    }
   }
 
   function handleBack() {
@@ -84,7 +92,7 @@ export function CadastroProdutos() {
           />
           <Input
             placeholder='Preço'
-            keyboardType='numbers-and-punctuation'
+            keyboardType='numeric'
             onChangeText={preco => setPreco(Number(preco))}
           />
           <Input
@@ -95,7 +103,11 @@ export function CadastroProdutos() {
           
           <Upload>
             <Photo uri={image} />
-            <PicImageButton title="Carregar" onPress={handlePickerImage} />
+            <PicImageButton 
+              type="upload"
+              title="Carregar" 
+              onPress={handlePickerImage} 
+            />
           </Upload>
 
         </Fields>
