@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationRouteContext, useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import uuid from 'react-native-uuid';
@@ -17,6 +17,7 @@ import {
   Form,
   Fields,
   GroupHeader,
+  TextBack,
   IconBack,
   Upload,
   PicImageButton
@@ -24,7 +25,7 @@ import {
 import { IProduto } from '../../../utils/interface';
 
 export function CadastroProdutos() {
-  const navitation = useNavigation();
+  const navigation = useNavigation();
   const [nome, setNome] = useState('');
   const [preco, setPreco] = useState(0);
   const [ingredientes, setIngredientes] = useState('');
@@ -64,6 +65,7 @@ export function CadastroProdutos() {
 
       await AsyncStorage.setItem(keyProducts, JSON.stringify(formattedData));
       Alert.alert('Produto cadastrado com sucesso!');
+      navigation.navigate('produtos');
       //limpar campos
     } catch (error) {
       console.log(error);
@@ -72,7 +74,7 @@ export function CadastroProdutos() {
   }
 
   function handleBack() {
-    navitation.goBack();
+    navigation.goBack();
   }
 
   return (
@@ -81,6 +83,7 @@ export function CadastroProdutos() {
 
       <GroupHeader onPress={handleBack}>
         <IconBack name='arrow-left' size={25} />
+        <TextBack>VOLTAR</TextBack>
       </GroupHeader>
 
       <Form>

@@ -18,7 +18,7 @@ export const GroupButton = styled.View`
 export const GroupButtonTitle = styled.Text`
   font-family: ${({theme})=>theme.fonts.regular};
   color: ${({theme})=>theme.colors.text};
-  font-size: ${RFValue(14)}px;
+  font-size: ${RFValue(12)}px;
   margin-right: 8px;
 `;
 

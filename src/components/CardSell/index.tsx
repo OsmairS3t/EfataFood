@@ -15,7 +15,14 @@ import {
     IconMinus,
 } from './styles';
 
-export function CardSell() {
+interface Props {
+    vendidos: number;
+    setPlus: ()=>void;
+    setMinus: ()=>void;
+}
+
+export function CardSell({vendidos, setPlus, setMinus}:Props) {
+
     return (
         <Container>
             <GroupProduct>
@@ -30,11 +37,11 @@ export function CardSell() {
             </GroupProduct>
 
             <GroupSell>
-                <BtnPlus>
+                <BtnPlus onPress={setPlus}>
                     <IconPlus name='plus' size={20} />
                 </BtnPlus>
-                <Amount>0</Amount>
-                <BtnMinus>
+                <Amount>{vendidos}</Amount>
+                <BtnMinus onPress={setMinus}>
                     <IconMinus name='minus' size={20} />
                 </BtnMinus>
             </GroupSell>

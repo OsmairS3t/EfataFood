@@ -26,15 +26,28 @@ export function Produtos() {
     navigation.navigate('cadastroprodutos');
   }
 
+  async function loadData() {
+    const response = await AsyncStorage.getItem(keyProducts);
+    const productsData = response ? JSON.parse(response) : [];
+    const productsFormatted:IProduto[] = productsData
+      .map((item:IProduto) => {
+        const price = Number(item.preco).toLocaleString('pt-BR', {
+          style: 'currency',
+          currency: 'BRL'
+        });
+
+        return {
+          id: item.id,
+          nome: item.nome,
+          foto: item.foto,
+          ingredientes: item.ingredientes,
+          preco: price,
+        }
+      });
+      setListProdutos(productsFormatted);
+  }
+
   useEffect(() => {
-    async function loadData() {
-      const data = await AsyncStorage.getItem(keyProducts);
-      const formattedData:IProduto = JSON.parse(data!);
-      setListProdutos([
-        ...listProdutos,
-        formattedData
-      ]);
-    }
     loadData();
   }, []);
 
@@ -43,7 +56,7 @@ export function Produtos() {
       <Header icon='logout' title='PRODUTOS' />
       <GroupButton>
         <ButtonNew onPress={handleNewProduct}>
-          <GroupButtonTitle>Novo</GroupButtonTitle>
+          <GroupButtonTitle>NOVO</GroupButtonTitle>
           <IconNew name='plus-circle' size={25} />
         </ButtonNew>
       </GroupButton>

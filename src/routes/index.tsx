@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { Login } from '../screens/Login';
 import { AppRoutes } from './app.routes';
+import { Produtos } from '../screens/Produtos';
 import { CadastroProdutos } from '../screens/Cadastro/Produtos';
 
 const { Navigator, Screen } = createNativeStackNavigator();
@@ -14,6 +15,7 @@ export function Routes() {
       <Navigator screenOptions={{headerShown: false}}>
           <Screen name='login' component={Login} />
           <Screen name='approutes' component={AppRoutes} />
+          <Screen name='produtos' component={Produtos} />
           <Screen name='cadastroprodutos' component={CadastroProdutos} />
       </Navigator>
     </NavigationContainer>
