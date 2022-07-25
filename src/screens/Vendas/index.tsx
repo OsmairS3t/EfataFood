@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { Modal } from 'react-native';
 import { CardSell } from '../../components/CardSell';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Header } from '../../components/Header';
 import { SelectProduct } from '../../components/SelectProduct';
+import { ListaProdutos } from '../ListaProdutos';
+import { IProduto } from '../../utils/interface';
 
 import {
     Container,
@@ -17,6 +20,9 @@ import {
 } from './styles';
 
 export function Vendas() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [produto, setProduto] = useState<IProduto>(null);
+    const [nomeProduto, setNomeProduto] = useState('Selecione o Produto');
     const [dateSell, setDateSell] = useState(new Date(Date.now()));
     const [show, setShow] = useState(false);
     const [totVendas, setTotVendas] = useState(0);
@@ -48,6 +54,14 @@ export function Vendas() {
         setVlrVendas(vlrVendas - 1);
     }
 
+    function handleOpenSelectProduct(){
+        setIsModalOpen(true);
+    }
+
+    function handleCloseSelectProduct(){
+        setIsModalOpen(false);
+    }
+
     return (
         <Container>
             <GroupMain>
@@ -59,7 +73,10 @@ export function Vendas() {
                     </BtnDate>
                 </Field>
                 <GroupSell>
-                    <SelectProduct />
+                    <SelectProduct 
+                        produto={nomeProduto}
+                        onPress={handleOpenSelectProduct} 
+                    />
                     <CardSell
                         vendidos={vendidos}
                         setPlus={handlePlus}
@@ -80,6 +97,10 @@ export function Vendas() {
                     onChange={onChange}
                 />
             )}
+
+            <Modal visible={isModalOpen}>
+                <ListaProdutos setProduct={setProduto} onClose={handleCloseSelectProduct} />
+            </Modal>
         </Container>
     )
 }

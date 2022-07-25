@@ -1,17 +1,22 @@
 import React from 'react';
 import { TouchableOpacityProps } from 'react-native';
+import { IProduto } from '../../utils/interface';
 
 import {
   Container,
   Title
 } from './styles';
 
-interface Props extends TouchableOpacityProps {};
+interface Props extends TouchableOpacityProps {
+  produto: string;
+};
 
-export function SelectProduct({...rest}: Props){
+export function SelectProduct({produto, ...rest}: Props){
  return (
   <Container {...rest}>
-    <Title>Selecione o Produto</Title>
+    <Title>
+      {produto && 'Selecione o Produto'}
+    </Title>
   </Container>
   );
 }

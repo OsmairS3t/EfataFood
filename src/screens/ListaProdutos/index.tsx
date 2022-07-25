@@ -9,13 +9,18 @@ import {
 } from './styles';
 
 import { products } from '../../utils/dataProducts';
+import { IProduto } from '../../utils/interface';
 
-export function ListaProdutos(){
-  const [selectedId, setSelectedId] = useState('');
+interface Props {
+  onClose: ()=>void;
+  setProduct: (product:IProduto)=>void;
+}
 
-  function handleSelectProduct(id: string) {
-    setSelectedId(id);
-    console.log(selectedId);
+export function ListaProdutos({setProduct, onClose}: Props){
+
+  function handleSelectProduct(prod: IProduto) {
+    setProduct(prod);
+    onClose();
   }
 
  return (
@@ -25,9 +30,14 @@ export function ListaProdutos(){
     <FlatList 
       data={products}
       renderItem={({item}) => (
-        <Product key={item.id} onPress={() => handleSelectProduct(item.id)}>
+        <Product key={item.id} onPress={() => handleSelectProduct(item)}>
           <ProductItem>{item.nome}</ProductItem>
-          <ProductItem>{item.preco}</ProductItem>
+          <ProductItem>
+            {item.preco.toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL'
+            })}
+        </ProductItem>
         </Product>
       )}
 
