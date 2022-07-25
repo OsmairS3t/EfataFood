@@ -24,7 +24,10 @@ import {
 } from './styles';
 import { IProduto } from '../../../utils/interface';
 
-export function CadastroProdutos() {
+interface Props {
+  onPress: () => void;
+}
+export function CadastroProdutos({onPress}: Props) {
   const navigation = useNavigation();
   const [nome, setNome] = useState('');
   const [preco, setPreco] = useState(0);
@@ -65,7 +68,7 @@ export function CadastroProdutos() {
 
       await AsyncStorage.setItem(keyProducts, JSON.stringify(formattedData));
       Alert.alert('Produto cadastrado com sucesso!');
-      navigation.navigate('produtos');
+      onPress();
       //limpar campos
     } catch (error) {
       console.log(error);
@@ -73,15 +76,11 @@ export function CadastroProdutos() {
     }
   }
 
-  function handleBack() {
-    navigation.goBack();
-  }
-
   return (
     <Container>
-      <Header icon='logout' title='CAD. DE PRODUTOS' />
+      <Header icon='logout' title='CADASTRO DE PRODUTOS' />
 
-      <GroupHeader onPress={handleBack}>
+      <GroupHeader onPress={onPress}>
         <IconBack name='arrow-left' size={25} />
         <TextBack>VOLTAR</TextBack>
       </GroupHeader>

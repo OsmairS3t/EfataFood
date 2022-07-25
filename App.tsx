@@ -1,3 +1,5 @@
+import 'intl';
+import 'intl/locale-data/jsonp/pt-BR';
 import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider } from 'styled-components';
 import theme from './src/global/styles/theme';
@@ -7,6 +9,7 @@ import {
   Dosis_200ExtraLight,
   Dosis_400Regular,
   Dosis_500Medium,
+  Dosis_600SemiBold,
   Dosis_700Bold
 } from '@expo-google-fonts/dosis';
 
@@ -17,6 +20,7 @@ export default function App() {
     Dosis_200ExtraLight,
     Dosis_400Regular,
     Dosis_500Medium,
+    Dosis_600SemiBold,
     Dosis_700Bold
   })
   

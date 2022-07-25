@@ -13,6 +13,7 @@ export const Container = styled.View`
 export const Form = styled.View`
   flex: 1;
   justify-content: space-between;
+  padding: 0 15px;
 `;
 
 export const GroupHeader = styled(TouchableOpacity)`
@@ -31,9 +32,7 @@ export const IconBack = styled<any>(Feather)`
   color: ${({ theme }) => theme.colors.text};
 `;
 
-export const Fields = styled.View`
-  padding: 0 15px;
-`;
+export const Fields = styled.View``;
 
 export const Upload = styled.View`
   width: 100%;

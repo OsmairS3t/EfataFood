@@ -32,7 +32,8 @@ export function CardSell({vendidos, setPlus, setMinus}:Props) {
                 />
                 <SubGroupProduct>
                     <ProductName>Pão de Mel</ProductName>
-                    <ProductPrice>R$ 9,99</ProductPrice>
+                    <ProductPrice>Unidade: R$ 5,00</ProductPrice>
+                    <ProductPrice>Sub-Total: R$ 0,00</ProductPrice>
                 </SubGroupProduct>
             </GroupProduct>
 

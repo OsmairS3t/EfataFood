@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, Modal } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
 
 import { Header } from '../../components/Header';
 import { CardProduct } from '../../components/CardProduct';
+import { CadastroProdutos } from '../Cadastro/Produtos';
 
 import { keyProducts } from '../../utils/keystorage';
 import { IProduto } from '../../utils/interface';
@@ -19,11 +19,15 @@ import {
 } from './styles';
 
 export function Produtos() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [listProdutos, setListProdutos] = useState<IProduto[]>([]);
-  const navigation = useNavigation();
 
-  function handleNewProduct() {
-    navigation.navigate('cadastroprodutos');
+  function handleOpenModalNewProduct() {
+    setIsModalOpen(true);
+  }
+
+  function handleCloseModalNewProduct() {
+    setIsModalOpen(false);
   }
 
   async function loadData() {
@@ -55,13 +59,12 @@ export function Produtos() {
     <Container>
       <Header icon='logout' title='PRODUTOS' />
       <GroupButton>
-        <ButtonNew onPress={handleNewProduct}>
+        <ButtonNew onPress={handleOpenModalNewProduct}>
           <GroupButtonTitle>NOVO</GroupButtonTitle>
           <IconNew name='plus-circle' size={25} />
         </ButtonNew>
       </GroupButton>
 
-      {/* {listProdutos && <Message>Não há produtos cadastrados.</Message>} */}
         <FlatList
           data={listProdutos}
           style={{ flex: 1, width: '100%' }}
@@ -70,6 +73,9 @@ export function Produtos() {
           )}
         />
 
+      <Modal visible={isModalOpen}>
+        <CadastroProdutos onPress={handleCloseModalNewProduct} />
+      </Modal>
     </Container>
   )
 }

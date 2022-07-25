@@ -30,4 +30,6 @@ export const Title = styled.Text`
   font-family: ${({theme})=>theme.fonts.bold};
   color: ${({theme})=>theme.colors.text};
   font-size: ${RFValue(20)}px;
+  width: 250px;
+  text-align: center;
 `;

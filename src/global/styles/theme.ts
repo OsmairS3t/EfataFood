@@ -15,8 +15,9 @@ export default {
   },
   fonts: {
     extralight: 'Dosis_200ExtraLight',
-    light: 'Dosis_400Regular',
-    regular: 'Dosis_500Medium',
+    regular: 'Dosis_400Regular',
+    medium: 'Dosis_500Medium',
+    semibold: 'Dosis_600SemiBold',
     bold: 'Dosis_700Bold'
   }
 }

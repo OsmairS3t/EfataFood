@@ -1,3 +1,5 @@
+import { Feather } from '@expo/vector-icons';
+import { TouchableOpacity } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native'
 
@@ -14,6 +16,25 @@ export const Title = styled.Text`
 `;
 
 export const GroupMain = styled.View``;
+
+export const Field = styled.View`
+  flex-direction: row;
+  margin-top: 5px;
+  align-items: center;
+`;
+
+export const BtnDate = styled(TouchableOpacity)`
+  margin-left: 20px;
+  width: 35px;
+  height: 35px;
+  border: 1px solid ${({ theme }) => theme.colors.backgroundAux};
+  align-items: center;
+  justify-content: center;
+`;
+
+export const IconDate = styled(Feather)`
+  color: ${({ theme }) => theme.colors.backgroundButton};
+`;
 
 export const GroupSell = styled.View`
   padding: 0 15px;

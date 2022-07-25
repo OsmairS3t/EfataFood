@@ -16,7 +16,6 @@ interface Props {
 }
 
 export function CardProduct({produto}: Props) {
-  console.log(produto)
 
   return (
     <Container key={produto.id}>
@@ -27,7 +26,7 @@ export function CardProduct({produto}: Props) {
       <CardGroup>
         <CardGroupTitle>
           <CardTitle>{produto.nome}</CardTitle>
-          <CardPrice>R$ {produto.preco}</CardPrice>
+          <CardPrice>{produto.preco}</CardPrice>
         </CardGroupTitle>
         <CardIngredient>
           {produto.ingredientes}
