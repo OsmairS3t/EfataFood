@@ -4,44 +4,46 @@ import { Header } from '../../components/Header';
 
 import {
   Container,
-  Product,
-  ProductItem,
+  GroupContainer,
+  GroupSell,
 } from './styles';
 
 import { products } from '../../utils/dataProducts';
 import { IProduto } from '../../utils/interface';
+import { CardSell } from '../../components/CardSell';
+import { Button } from '../../components/Button';
 
 interface Props {
-  onClose: ()=>void;
-  setProduct: (product:IProduto)=>void;
+  setProduct: (product: IProduto) => void;
+  onClose: () => void;
 }
 
-export function ListaProdutos({setProduct, onClose}: Props){
+export function ListaProdutos({ setProduct, onClose }: Props) {
+  const [vendidos, setVendidos] = useState(0);
 
   function handleSelectProduct(prod: IProduto) {
     setProduct(prod);
     onClose();
   }
 
- return (
-  <Container>
-    <Header icon='logout' title='Produtos' />
-
-    <FlatList 
-      data={products}
-      renderItem={({item}) => (
-        <Product key={item.id} onPress={() => handleSelectProduct(item)}>
-          <ProductItem>{item.nome}</ProductItem>
-          <ProductItem>
-            {item.preco.toLocaleString('pt-BR', {
-              style: 'currency',
-              currency: 'BRL'
-            })}
-        </ProductItem>
-        </Product>
-      )}
-
-    />
-  </Container>
+  return (
+    <Container>
+      <Header icon='logout' title='Venda de Produtos' />
+      <GroupContainer>
+      <FlatList
+        data={products}
+        renderItem={({ item }) => (
+          <GroupSell key={item.id}>
+            <CardSell
+              produto={item}
+              vendidos={vendidos}
+              setVendidos={setVendidos}
+            />
+          </GroupSell>
+        )}
+      />
+      <Button title='Finalizar Venda' onPress={onClose} />
+      </GroupContainer>
+    </Container>
   );
 }

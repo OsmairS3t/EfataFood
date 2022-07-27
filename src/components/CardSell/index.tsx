@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { IProduto } from '../../utils/interface';
 
 import {
     Container,
@@ -16,33 +17,58 @@ import {
 } from './styles';
 
 interface Props {
+    produto: IProduto;
     vendidos: number;
-    setPlus: ()=>void;
-    setMinus: ()=>void;
+    setVendidos: (vendidos: number) => void;
 }
 
-export function CardSell({vendidos, setPlus, setMinus}:Props) {
+export function CardSell({ produto, vendidos, setVendidos }: Props) {
+    const precoUnitario = produto.preco;
+    const [qtdVendas, setQtdVendas] = useState(0);
+    const [subTotal, setSubTotal] = useState(0);
+
+    function handlePlus() {
+        setQtdVendas(qtdVendas + 1);
+        setSubTotal(precoUnitario * qtdVendas)
+        console.log(qtdVendas)
+    }
+
+    function handleMinus() {
+        setQtdVendas(qtdVendas - 1);
+        setSubTotal(precoUnitario * qtdVendas)
+    }
 
     return (
         <Container>
             <GroupProduct>
-                <ProductPhoto 
-                    source={require('../../assets/pao-de-mel.png')} 
-                    style={{borderRadius: 50}} 
+                <ProductPhoto
+                    source={{ uri: produto.foto }}
+                    style={{ borderRadius: 50 }}
                 />
                 <SubGroupProduct>
-                    <ProductName>Pão de Mel</ProductName>
-                    <ProductPrice>Unidade: R$ 5,00</ProductPrice>
-                    <ProductPrice>Sub-Total: R$ 0,00</ProductPrice>
+                    <ProductName>{produto.nome}</ProductName>
+                    <ProductPrice>
+                        Preço Unitário: {precoUnitario.toLocaleString('pt-BR', {
+                            style: 'currency',
+                            currency: 'BRL'
+                        })}
+                    </ProductPrice>
+                    <ProductPrice>
+                        Sub-Total: {subTotal.toLocaleString('pt-BR', {
+                            style: 'currency',
+                            currency: 'BRL'
+                        })}
+
+                    </ProductPrice>
                 </SubGroupProduct>
             </GroupProduct>
 
             <GroupSell>
-                <BtnPlus onPress={setPlus}>
+                <BtnPlus onPress={handlePlus}>
                     <IconPlus name='plus' size={20} />
                 </BtnPlus>
-                <Amount>{vendidos}</Amount>
-                <BtnMinus onPress={setMinus}>
+                <Amount>{qtdVendas}</Amount>
+                <BtnMinus onPress={handleMinus}>
                     <IconMinus name='minus' size={20} />
                 </BtnMinus>
             </GroupSell>

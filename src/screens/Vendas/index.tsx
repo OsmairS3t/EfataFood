@@ -11,6 +11,8 @@ import {
     Container,
     GroupMain,
     Field,
+    BtnNewSell,
+    IconNewSell,
     BtnDate,
     IconDate,
     Title,
@@ -20,15 +22,19 @@ import {
 } from './styles';
 
 export function Vendas() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [produto, setProduto] = useState<IProduto>(null);
-    const [nomeProduto, setNomeProduto] = useState('Selecione o Produto');
     const [dateSell, setDateSell] = useState(new Date(Date.now()));
     const [show, setShow] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [totVendas, setTotVendas] = useState(0);
     const [vlrVendas, setVlrVendas] = useState(0);
-    const [vendidos, setVendidos] = useState(0);
-    const dateFormatted = Intl.DateTimeFormat('pt-BR',{
+    const [produto, setProduto] = useState<IProduto>({
+        id: 'selecione',
+        nome: 'Selecione o Produto',
+        ingredientes: '',
+        preco: 0,
+        foto: ''
+    });
+    const dateFormatted = Intl.DateTimeFormat('pt-BR', {
         day: '2-digit',
         month: '2-digit',
         year: 'numeric'
@@ -42,23 +48,11 @@ export function Vendas() {
         setShow(true);
     };
 
-    function handlePlus() {
-        setTotVendas(totVendas + 1);
-        setVendidos(vendidos + 1);
-        setVlrVendas(vlrVendas + 1);
-    }
-
-    function handleMinus() {
-        setTotVendas(totVendas - 1);
-        setVendidos(vendidos - 1);
-        setVlrVendas(vlrVendas - 1);
-    }
-
-    function handleOpenSelectProduct(){
+    function handleOpenSelectProduct() {
         setIsModalOpen(true);
     }
 
-    function handleCloseSelectProduct(){
+    function handleCloseSelectProduct() {
         setIsModalOpen(false);
     }
 
@@ -71,16 +65,14 @@ export function Vendas() {
                     <BtnDate onPress={showDatepicker}>
                         <IconDate name='calendar' size={25} />
                     </BtnDate>
+                    <BtnNewSell>
+                        <IconNewSell name='plus-circle' size={25} />
+                    </BtnNewSell>
                 </Field>
                 <GroupSell>
-                    <SelectProduct 
-                        produto={nomeProduto}
-                        onPress={handleOpenSelectProduct} 
-                    />
-                    <CardSell
-                        vendidos={vendidos}
-                        setPlus={handlePlus}
-                        setMinus={handleMinus}
+                    <SelectProduct
+                        produto={produto.nome}
+                        onPress={handleOpenSelectProduct}
                     />
                 </GroupSell>
             </GroupMain>
@@ -99,7 +91,10 @@ export function Vendas() {
             )}
 
             <Modal visible={isModalOpen}>
-                <ListaProdutos setProduct={setProduto} onClose={handleCloseSelectProduct} />
+                <ListaProdutos
+                    setProduct={setProduto}
+                    onClose={handleCloseSelectProduct}
+                />
             </Modal>
         </Container>
     )

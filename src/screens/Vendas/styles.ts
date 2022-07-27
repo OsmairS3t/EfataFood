@@ -9,22 +9,28 @@ export const Container = styled.View`
   background-color: ${({theme})=>theme.colors.background};
 `;
 
-export const Title = styled.Text`
-  padding: 10px 15px;
-  font-size: ${RFValue(14)}px;
-  font-family: ${({ theme }) => theme.fonts.regular};
-`;
-
 export const GroupMain = styled.View``;
 
 export const Field = styled.View`
   flex-direction: row;
-  margin-top: 5px;
+  margin: 5px 20px;
   align-items: center;
+  justify-content: space-between;
+`;
+
+export const Title = styled.Text`
+  padding: 10px 0px;
+  font-size: ${RFValue(14)}px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+`;
+
+export const BtnNewSell = styled.TouchableOpacity``;
+
+export const IconNewSell = styled(Feather)`
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 export const BtnDate = styled(TouchableOpacity)`
-  margin-left: 20px;
   width: 35px;
   height: 35px;
   border: 1px solid ${({ theme }) => theme.colors.backgroundAux};

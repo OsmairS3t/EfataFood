@@ -1,7 +1,21 @@
-import { RFValue } from 'react-native-responsive-fontsize';
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-export const Container = styled.View``;
+export const Container = styled.View`
+  flex: 1;
+  background-color: ${({ theme }) => theme.colors.background};
+`;
+
+export const GroupContainer = styled.View`
+  flex: 1;
+  justify-content: space-between;
+  padding: 10px;
+`;
+
+export const GroupSell = styled.View`
+  padding: 0px;
+  margin-bottom: 5px;
+`;
 
 export const Product = styled.TouchableOpacity`
   width: 100%;

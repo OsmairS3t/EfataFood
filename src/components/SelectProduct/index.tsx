@@ -1,22 +1,21 @@
 import React from 'react';
-import { TouchableOpacityProps } from 'react-native';
-import { IProduto } from '../../utils/interface';
 
 import {
   Container,
-  Title
+  Title,
+  Icon
 } from './styles';
 
-interface Props extends TouchableOpacityProps {
+interface Props {
   produto: string;
+  onPress: () => void;
 };
 
-export function SelectProduct({produto, ...rest}: Props){
+export function SelectProduct({produto, onPress}: Props){
  return (
-  <Container {...rest}>
-    <Title>
-      {produto && 'Selecione o Produto'}
-    </Title>
+  <Container onPress={onPress}>
+    <Title>{produto}</Title>
+    <Icon name="chevron-down" size={30} />
   </Container>
   );
 }
