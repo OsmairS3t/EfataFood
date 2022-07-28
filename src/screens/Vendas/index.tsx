@@ -5,7 +5,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { Header } from '../../components/Header';
 import { SelectProduct } from '../../components/SelectProduct';
 import { ListaProdutos } from '../ListaProdutos';
-import { IProduto } from '../../utils/interface';
+import { IProduto, IVenda } from '../../utils/interface';
 import { sells } from '../../utils/dataSell';
 
 import {
@@ -32,6 +32,7 @@ export function Vendas() {
     const [dateSell, setDateSell] = useState(new Date(Date.now()));
     const [show, setShow] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [vendas, setVendas] = useState<IVenda[]>([]);
     const [totVendas, setTotVendas] = useState(0);
     const [vlrVendas, setVlrVendas] = useState(0);
     const [produto, setProduto] = useState<IProduto>({
@@ -76,6 +77,7 @@ export function Vendas() {
                         <IconNewSell name='plus-circle' size={25} />
                     </BtnNewSell>
                 </Field>
+
                 <GroupSell>
                     <SelectProduct
                         produto={produto.nome}
@@ -124,7 +126,8 @@ export function Vendas() {
 
             <Modal visible={isModalOpen}>
                 <ListaProdutos
-                    setProduct={setProduto}
+                    vendas={vendas}
+                    setVendas={setVendas}
                     onClose={handleCloseSelectProduct}
                 />
             </Modal>

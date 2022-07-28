@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IProduto } from '../../utils/interface';
+import { IProduto, IVenda } from '../../utils/interface';
 
 import {
     Container,
@@ -18,11 +18,9 @@ import {
 
 interface Props {
     produto: IProduto;
-    vendidos: number;
-    setVendidos: (vendidos: number) => void;
 }
 
-export function CardSell({ produto, vendidos, setVendidos }: Props) {
+export function CardSell({ produto }: Props) {
     const precoUnitario = produto.preco;
     const [qtdVendas, setQtdVendas] = useState(0);
     const [subTotal, setSubTotal] = useState(0);
