@@ -46,6 +46,34 @@ export const GroupSell = styled.View`
   padding: 0 15px;
 `;
 
+export const Venda = styled.View`
+  width: 100%;
+  margin: 5px 0px;
+  padding: 10px;
+  background-color: ${({ theme }) => theme.colors.backgroundAux};
+`;
+
+export const Produto = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.bold};
+  font-size: ${RFValue(16)}px; 
+`;
+
+export const Detalhes = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const Valor = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.regular};
+  font-size: ${RFValue(14)}px; 
+`;
+
+export const Quant = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.regular};
+  font-size: ${RFValue(14)}px; 
+`;
+
 export const Total = styled.View`
   height: 50px;
   padding: 5px 15px;

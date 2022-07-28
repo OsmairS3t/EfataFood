@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Modal } from 'react-native';
+import { FlatList, Modal } from 'react-native';
 import { CardSell } from '../../components/CardSell';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Header } from '../../components/Header';
 import { SelectProduct } from '../../components/SelectProduct';
 import { ListaProdutos } from '../ListaProdutos';
 import { IProduto } from '../../utils/interface';
+import { sells } from '../../utils/dataSell';
 
 import {
     Container,
@@ -17,9 +18,15 @@ import {
     IconDate,
     Title,
     GroupSell,
+    Venda,
+    Detalhes,
+    Produto,
+    Valor,
+    Quant,
     Total,
     TextTotal,
 } from './styles';
+import { ProductItem } from '../ListaProdutos/styles';
 
 export function Vendas() {
     const [dateSell, setDateSell] = useState(new Date(Date.now()));
@@ -59,7 +66,7 @@ export function Vendas() {
     return (
         <Container>
             <GroupMain>
-                <Header icon='logout' title='VENDAS' />
+                <Header icon='logout' title='VENDAS DIÁRIAS' />
                 <Field>
                     <Title>Data da venda: {dateFormatted}</Title>
                     <BtnDate onPress={showDatepicker}>
@@ -73,6 +80,31 @@ export function Vendas() {
                     <SelectProduct
                         produto={produto.nome}
                         onPress={handleOpenSelectProduct}
+                    />
+
+                    <FlatList
+                        data={sells}
+                        keyExtractor={(item) => item.id}
+                        renderItem={({ item }) => (
+                            <Venda>
+                                <Produto>{item.product.nome}</Produto>
+                                <Detalhes>
+                                    <Valor>
+                                        Valor: {item.product.preco.toLocaleString('pt-BR', {
+                                            style: 'currency',
+                                            currency: 'BRL'
+                                        })}
+                                    </Valor>
+                                    <Quant>Quant.: {item.quant}</Quant>
+                                    <Quant>
+                                        Total: {item.total.toLocaleString('pt-BR', {
+                                            style: 'currency',
+                                            currency: 'BRL'
+                                        })}
+                                    </Quant>
+                                </Detalhes>
+                            </Venda>
+                        )}
                     />
                 </GroupSell>
             </GroupMain>

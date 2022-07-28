@@ -17,7 +17,7 @@ export function Header({icon, title}:Props) {
     const navigation = useNavigation();
     
     function handleLogout() {
-        navigation.navigate('login');
+        navigation.navigate('home');
     }
 
     return (
