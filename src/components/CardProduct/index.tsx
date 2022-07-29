@@ -13,12 +13,13 @@ import {
 
 interface Props {
   produto: IProduto;
+  onPress: () => void;
 }
 
-export function CardProduct({produto}: Props) {
+export function CardProduct({produto, onPress}: Props) {
 
   return (
-    <Container key={produto.id}>
+    <Container key={produto.id} onPress={onPress}>
       <CardImage 
         source={{uri:produto.foto}} 
         style={{ borderRadius: 50 }} 
@@ -26,7 +27,10 @@ export function CardProduct({produto}: Props) {
       <CardGroup>
         <CardGroupTitle>
           <CardTitle>{produto.nome}</CardTitle>
-          <CardPrice>{produto.preco}</CardPrice>
+          <CardPrice>{produto.preco.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+          })}</CardPrice>
         </CardGroupTitle>
         <CardIngredient>
           {produto.ingredientes}

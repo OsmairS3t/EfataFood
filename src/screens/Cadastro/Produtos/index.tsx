@@ -95,7 +95,7 @@ export function CadastroProdutos({onPress}: Props) {
           <Input
             placeholder='Preço'
             keyboardType='numeric'
-            onChangeText={preco => setPreco(Number(preco))}
+            onChangeText={(preco) => setPreco(Number(preco))}
           />
           <Input
             placeholder='Ingredientes'

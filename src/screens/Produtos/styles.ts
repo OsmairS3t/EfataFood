@@ -9,17 +9,29 @@ export const Container = styled.View`
 
 export const GroupButton = styled.View`
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   margin: 0 15px;
   padding: 10px 0;
 `;
 
 export const GroupButtonTitle = styled.Text`
-  font-family: ${({theme})=>theme.fonts.regular};
+  font-family: ${({theme})=>theme.fonts.medium};
   color: ${({theme})=>theme.colors.text};
   font-size: ${RFValue(12)}px;
   margin-right: 8px;
+`;
+
+export const ButtonBack = styled.TouchableOpacity`
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100px;
+`;
+
+export const ButtonSell = styled.TouchableOpacity`
+  flex-direction: row;
+  justify-content: center;
+  width: 200px;
 `;
 
 export const ButtonNew = styled.TouchableOpacity`

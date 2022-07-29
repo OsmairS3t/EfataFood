@@ -1,6 +1,7 @@
+import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -29,13 +30,13 @@ export const CardGroupTitle = styled.View`
 
 export const CardTitle = styled.Text`
   color: ${({theme})=>theme.colors.text};
-  font-family: ${({theme})=>theme.fonts.regular};
+  font-family: ${({theme})=>theme.fonts.semibold};
   font-size: 18px;
 `;
 
 export const CardPrice = styled.Text`
   color: ${({theme})=>theme.colors.text};
-  font-family: ${({theme})=>theme.fonts.regular};
+  font-family: ${({theme})=>theme.fonts.bold};
   font-size: 18px;
 `;
 
