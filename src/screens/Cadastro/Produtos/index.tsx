@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Alert } from 'react-native';
-import { NavigationRouteContext, useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import uuid from 'react-native-uuid';
@@ -28,7 +27,6 @@ interface Props {
   onPress: () => void;
 }
 export function CadastroProdutos({onPress}: Props) {
-  const navigation = useNavigation();
   const [nome, setNome] = useState('');
   const [preco, setPreco] = useState(0);
   const [ingredientes, setIngredientes] = useState('');
@@ -43,7 +41,7 @@ export function CadastroProdutos({onPress}: Props) {
         aspect: [4,4]
       });
       
-      if (!result.cancelled) {
+      if (result.cancelled===false) {
         setImage(result.uri);
       }
      }

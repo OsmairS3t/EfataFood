@@ -8,6 +8,42 @@ export const Container = styled.View`
   justify-content: space-between;
   background-color: ${({theme})=>theme.colors.background};
 `;
+export const GroupButton = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 15px;
+  padding: 10px 0;
+`;
+
+export const GroupButtonTitle = styled.Text`
+  font-family: ${({theme})=>theme.fonts.medium};
+  color: ${({theme})=>theme.colors.text};
+  font-size: ${RFValue(12)}px;
+  margin-right: 8px;
+`;
+
+export const ButtonBack = styled.TouchableOpacity`
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100px;
+`;
+
+export const ButtonSell = styled.TouchableOpacity`
+  flex-direction: row;
+  justify-content: center;
+  width: 200px;
+`;
+
+export const ButtonNew = styled.TouchableOpacity`
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100px;
+`;
+
+export const IconNew = styled<any>(Feather)`
+  color: ${({theme})=>theme.colors.text};
+`;
 
 export const GroupMain = styled.View``;
 
@@ -15,7 +51,7 @@ export const Field = styled.View`
   flex-direction: row;
   margin: 5px 20px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 `;
 
 export const Title = styled.Text`
@@ -33,6 +69,7 @@ export const IconNewSell = styled(Feather)`
 export const BtnDate = styled(TouchableOpacity)`
   width: 35px;
   height: 35px;
+  margin-left: 15px;
   border: 1px solid ${({ theme }) => theme.colors.backgroundAux};
   align-items: center;
   justify-content: center;

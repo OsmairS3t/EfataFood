@@ -6,6 +6,7 @@ import {
     LogoTipo,
     GroupButton,
     ButtonSend,
+    IconButton,
     TextButton,
 } from './styles';
 
@@ -24,9 +25,11 @@ export function Home() {
             <LogoTipo source={require('../../assets/logotipoeb.png')} />
             <GroupButton>
                 <ButtonSend onPress={handleProduct}>
+                    <IconButton name='archive' size={30} />
                     <TextButton>Produtos</TextButton>
                 </ButtonSend>
                 <ButtonSend onPress={handleSell}>
+                    <IconButton name='dollar-sign' size={30} />
                     <TextButton>Vendas</TextButton>
                 </ButtonSend>
             </GroupButton>

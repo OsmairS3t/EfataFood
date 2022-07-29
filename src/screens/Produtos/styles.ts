@@ -15,13 +15,6 @@ export const GroupButton = styled.View`
   padding: 10px 0;
 `;
 
-export const GroupButtonTitle = styled.Text`
-  font-family: ${({theme})=>theme.fonts.medium};
-  color: ${({theme})=>theme.colors.text};
-  font-size: ${RFValue(12)}px;
-  margin-right: 8px;
-`;
-
 export const ButtonBack = styled.TouchableOpacity`
   flex-direction: row;
   justify-content: flex-start;
@@ -31,7 +24,7 @@ export const ButtonBack = styled.TouchableOpacity`
 export const ButtonSell = styled.TouchableOpacity`
   flex-direction: row;
   justify-content: center;
-  width: 200px;
+  width: 150px;
 `;
 
 export const ButtonNew = styled.TouchableOpacity`
@@ -40,12 +33,13 @@ export const ButtonNew = styled.TouchableOpacity`
   width: 100px;
 `;
 
-export const IconNew = styled<any>(Feather)`
+export const GroupButtonTitle = styled.Text`
+  font-family: ${({theme})=>theme.fonts.medium};
   color: ${({theme})=>theme.colors.text};
+  font-size: ${RFValue(12)}px;
 `;
 
-export const Message = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(14)}px;
-  color: ${({ theme }) => theme.colors.text};
+export const IconButton = styled<any>(Feather)`
+  color: ${({theme})=>theme.colors.text};
+  margin: 0px 8px;
 `;

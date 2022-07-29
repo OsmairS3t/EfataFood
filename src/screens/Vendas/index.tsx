@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
-import { FlatList, Modal } from 'react-native';
-import { CardSell } from '../../components/CardSell';
+import React, { useEffect, useState } from 'react';
+import { FlatList } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Header } from '../../components/Header';
-import { SelectProduct } from '../../components/SelectProduct';
-import { ListaProdutos } from '../ListaProdutos';
-import { IProduto, IVenda } from '../../utils/interface';
-import { sells } from '../../utils/dataSell';
+import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { IVenda } from '../../utils/interface';
+import { keyVendas } from '../../utils/keystorage';
 
 import {
     Container,
+    GroupButton,
+    GroupButtonTitle,
+    ButtonBack,
+    ButtonNew,
+    IconNew,
     GroupMain,
     Field,
-    BtnNewSell,
-    IconNewSell,
     BtnDate,
     IconDate,
     Title,
@@ -26,22 +28,14 @@ import {
     Total,
     TextTotal,
 } from './styles';
-import { ProductItem } from '../ListaProdutos/styles';
 
 export function Vendas() {
+    const navigation = useNavigation();
     const [dateSell, setDateSell] = useState(new Date(Date.now()));
     const [show, setShow] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [vendas, setVendas] = useState<IVenda[]>([]);
     const [totVendas, setTotVendas] = useState(0);
     const [vlrVendas, setVlrVendas] = useState(0);
-    const [produto, setProduto] = useState<IProduto>({
-        id: 'selecione',
-        nome: 'Selecione o Produto',
-        ingredientes: '',
-        preco: 0,
-        foto: ''
-    });
     const dateFormatted = Intl.DateTimeFormat('pt-BR', {
         day: '2-digit',
         month: '2-digit',
@@ -52,47 +46,70 @@ export function Vendas() {
         setShow(false);
         setDateSell(selectedDate);
     };
+
     const showDatepicker = () => {
         setShow(true);
     };
 
-    function handleOpenSelectProduct() {
-        setIsModalOpen(true);
+    function handleBackHome() {
+        navigation.navigate('home');
     }
 
-    function handleCloseSelectProduct() {
-        setIsModalOpen(false);
+    async function loadSells() {
+        const response = await AsyncStorage.getItem(keyVendas);
+        const sellData: IVenda[] = response ? JSON.parse(response) : [];
+        //const filteredData = sellData.filter(item => item.datavenda === dateSell);
+        //console.log(filteredData)
+        setVendas(sellData);
+        console.log(sellData)
     }
+    useEffect(() => {
+        loadSells();
+    }, []);
 
     return (
         <Container>
             <GroupMain>
                 <Header icon='logout' title='VENDAS DIÁRIAS' />
+                <GroupButton>
+                    <ButtonBack onPress={handleBackHome}>
+                        <IconNew name='arrow-left' size={25} />
+                        <GroupButtonTitle>VOLTAR</GroupButtonTitle>
+                    </ButtonBack>
+
+                    <ButtonNew onPress={() => { }}>
+                        <GroupButtonTitle>NOVA</GroupButtonTitle>
+                        <IconNew name='plus-circle' size={25} />
+                    </ButtonNew>
+                </GroupButton>
+
                 <Field>
                     <Title>Data da venda: {dateFormatted}</Title>
                     <BtnDate onPress={showDatepicker}>
                         <IconDate name='calendar' size={25} />
                     </BtnDate>
-                    <BtnNewSell>
-                        <IconNewSell name='plus-circle' size={25} />
-                    </BtnNewSell>
+                    {show && (
+                        <DateTimePicker
+                            testID="dateTimePicker"
+                            value={dateSell}
+                            mode='date'
+                            display='default'
+                            onChange={onChange}
+                        />
+                    )}
                 </Field>
 
                 <GroupSell>
-                    <SelectProduct
-                        produto={produto.nome}
-                        onPress={handleOpenSelectProduct}
-                    />
-
+                   
                     <FlatList
-                        data={sells}
-                        keyExtractor={(item) => item.id}
+                        data={vendas}
+                        style={{ flex: 1, width: '100%' }}
                         renderItem={({ item }) => (
                             <Venda>
-                                <Produto>{item.product.nome}</Produto>
+                                <Produto>{item.produto.nome}</Produto>
                                 <Detalhes>
                                     <Valor>
-                                        Valor: {item.product.preco.toLocaleString('pt-BR', {
+                                        Valor: {item.produto.preco.toLocaleString('pt-BR', {
                                             style: 'currency',
                                             currency: 'BRL'
                                         })}
@@ -114,23 +131,6 @@ export function Vendas() {
             <Total>
                 <TextTotal>{totVendas} Vendas - Total: R$ {vlrVendas}</TextTotal>
             </Total>
-            {show && (
-                <DateTimePicker
-                    testID="dateTimePicker"
-                    value={dateSell}
-                    mode='date'
-                    display='default'
-                    onChange={onChange}
-                />
-            )}
-
-            <Modal visible={isModalOpen}>
-                <ListaProdutos
-                    vendas={vendas}
-                    setVendas={setVendas}
-                    onClose={handleCloseSelectProduct}
-                />
-            </Modal>
         </Container>
     )
 }

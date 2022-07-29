@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { Feather } from '@expo/vector-icons';
 
 export const Container = styled.View`
     flex: 1;
@@ -24,9 +25,15 @@ export const ButtonSend = styled.TouchableOpacity`
     padding: 10px;
     align-items: center;
     justify-content: center;
-    background-color: ${({theme})=>theme.colors.backgroundButton};
+    background-color: ${({theme})=>theme.colors.title};
     border: 1px solid ${({theme})=>theme.colors.backgroundAux};
     border-radius: 20px;
+`;
+
+export const IconButton = styled(Feather)`
+    width: 50px;
+    height: 50px;
+    color: ${({ theme }) => theme.colors.backgroundAux};
 `;
 
 export const TextButton = styled.Text`

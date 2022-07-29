@@ -11,6 +11,8 @@ export default {
     title: '#545454',
     text: '#605F5F',
     attention: '#aa0000',
+    btnPlus: '#bde9ff',
+    btnMinus: '#ffbdbd',
     success: '#019910',
   },
   fonts: {

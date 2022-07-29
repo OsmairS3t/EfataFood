@@ -17,8 +17,7 @@ import {
   ButtonBack,
   ButtonSell,
   ButtonNew,
-  IconNew,
-  Message
+  IconButton
 } from './styles';
 import { Vendas } from '../Cadastro/Vendas';
 
@@ -31,6 +30,10 @@ export function Produtos() {
 
   function handleBackHome() {
     navigation.navigate('home');
+  }
+
+  function handleSell() {
+    navigation.navigate('vendas');
   }
 
   function handleOpenModalNewProduct() {
@@ -48,10 +51,6 @@ export function Produtos() {
 
   function handleCloseModalSellProduct() {
     setIsModalSellOpen(false);
-  }
-
-  function handleSell() {
-    navigation.navigate('vendas');
   }
 
   async function loadData() {
@@ -83,7 +82,7 @@ export function Produtos() {
       <Header icon='logout' title='PRODUTOS' />
       <GroupButton>
         <ButtonBack onPress={handleBackHome}>
-          <IconNew name='arrow-left' size={25} />
+          <IconButton name='arrow-left' size={25} />
           <GroupButtonTitle>VOLTAR</GroupButtonTitle>
         </ButtonBack>
 
@@ -93,7 +92,7 @@ export function Produtos() {
 
         <ButtonNew onPress={handleOpenModalNewProduct}>
           <GroupButtonTitle>NOVO</GroupButtonTitle>
-          <IconNew name='plus-circle' size={25} />
+          <IconButton name='plus-circle' size={25} />
         </ButtonNew>
       </GroupButton>
 
