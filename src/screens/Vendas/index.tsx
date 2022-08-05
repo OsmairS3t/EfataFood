@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, Text } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Header } from '../../components/Header';
 import { useNavigation } from '@react-navigation/native';
@@ -36,6 +36,7 @@ export function Vendas() {
     const [vendas, setVendas] = useState<IVenda[]>([]);
     const [totVendas, setTotVendas] = useState(0);
     const [vlrVendas, setVlrVendas] = useState(0);
+    const [isDateFiltered, setIsDateFiltered] = useState(false);
     const dateFormatted = Intl.DateTimeFormat('pt-BR', {
         day: '2-digit',
         month: '2-digit',
@@ -51,6 +52,10 @@ export function Vendas() {
         setShow(true);
     };
 
+    function handleVenderProdutos() {
+        navigation.navigate('produtos');
+    }
+
     function handleBackHome() {
         navigation.navigate('home');
     }
@@ -58,10 +63,15 @@ export function Vendas() {
     async function loadSells() {
         const response = await AsyncStorage.getItem(keyVendas);
         const sellData: IVenda[] = response ? JSON.parse(response) : [];
-        //const filteredData = sellData.filter(item => item.datavenda === dateSell);
-        //console.log(filteredData)
+        let quantVendas = 0;
+        let valorVendas = 0;
+        sellData.map((item) => {
+            quantVendas += item.quant;
+            valorVendas += item.total;
+        })
+        setTotVendas(quantVendas)
+        setVlrVendas(valorVendas);
         setVendas(sellData);
-        console.log(sellData)
     }
     useEffect(() => {
         loadSells();
@@ -77,7 +87,7 @@ export function Vendas() {
                         <GroupButtonTitle>VOLTAR</GroupButtonTitle>
                     </ButtonBack>
 
-                    <ButtonNew onPress={() => { }}>
+                    <ButtonNew onPress={handleVenderProdutos}>
                         <GroupButtonTitle>NOVA</GroupButtonTitle>
                         <IconNew name='plus-circle' size={25} />
                     </ButtonNew>
@@ -100,10 +110,9 @@ export function Vendas() {
                 </Field>
 
                 <GroupSell>
-                   
                     <FlatList
                         data={vendas}
-                        style={{ flex: 1, width: '100%' }}
+                        keyExtractor={(item) => item.id}
                         renderItem={({ item }) => (
                             <Venda>
                                 <Produto>{item.produto.nome}</Produto>
@@ -129,7 +138,13 @@ export function Vendas() {
             </GroupMain>
 
             <Total>
-                <TextTotal>{totVendas} Vendas - Total: R$ {vlrVendas}</TextTotal>
+                <TextTotal>
+                    RESUMO: {totVendas} Vendas -
+                    Total: R$ {vlrVendas.toLocaleString('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL'
+                    })}
+                </TextTotal>
             </Total>
         </Container>
     )
