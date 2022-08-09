@@ -22,6 +22,8 @@ import {
     GroupSell,
     Venda,
     Detalhes,
+    GroupTitle,
+    DateTitle,
     Produto,
     Valor,
     Quant,
@@ -63,19 +65,29 @@ export function Vendas() {
     async function loadSells() {
         const response = await AsyncStorage.getItem(keyVendas);
         const sellData: IVenda[] = response ? JSON.parse(response) : [];
+        const filteredSellData: IVenda[] = sellData.filter(item => (Intl.DateTimeFormat('pt-BR', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        }).format(Date.parse(item.datavenda.toString())))===(Intl.DateTimeFormat('pt-BR', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        }).format(Date.parse(dateSell.toString()))));
+        
+        setVendas(filteredSellData);
         let quantVendas = 0;
         let valorVendas = 0;
-        sellData.map((item) => {
+        filteredSellData.map((item) => {
             quantVendas += item.quant;
             valorVendas += item.total;
         })
         setTotVendas(quantVendas)
         setVlrVendas(valorVendas);
-        setVendas(sellData);
     }
     useEffect(() => {
         loadSells();
-    }, []);
+    }, [dateSell]);
 
     return (
         <Container>
@@ -115,7 +127,16 @@ export function Vendas() {
                         keyExtractor={(item) => item.id}
                         renderItem={({ item }) => (
                             <Venda>
-                                <Produto>{item.produto.nome}</Produto>
+                                <GroupTitle>
+                                    <Produto>{item.produto.nome}</Produto>
+                                    <DateTitle>
+                                        { Intl.DateTimeFormat('pt-BR', {
+                                            day: '2-digit',
+                                            month: '2-digit',
+                                            year: 'numeric'
+                                        }).format(Date.parse(item.datavenda.toString()))}
+                                    </DateTitle>
+                                </GroupTitle>
                                 <Detalhes>
                                     <Valor>
                                         Valor: {item.produto.preco.toLocaleString('pt-BR', {

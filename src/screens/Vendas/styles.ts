@@ -6,7 +6,7 @@ import styled from 'styled-components/native'
 export const Container = styled.View`
   flex: 1;
   justify-content: space-between;
-  background-color: ${({theme})=>theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.background};
 `;
 export const GroupButton = styled.View`
   flex-direction: row;
@@ -17,8 +17,8 @@ export const GroupButton = styled.View`
 `;
 
 export const GroupButtonTitle = styled.Text`
-  font-family: ${({theme})=>theme.fonts.medium};
-  color: ${({theme})=>theme.colors.text};
+  font-family: ${({ theme }) => theme.fonts.medium};
+  color: ${({ theme }) => theme.colors.text};
   font-size: ${RFValue(12)}px;
   margin-right: 8px;
 `;
@@ -42,7 +42,7 @@ export const ButtonNew = styled.TouchableOpacity`
 `;
 
 export const IconNew = styled<any>(Feather)`
-  color: ${({theme})=>theme.colors.text};
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 export const GroupMain = styled.View``;
@@ -90,6 +90,18 @@ export const Venda = styled.View`
   background-color: ${({ theme }) => theme.colors.backgroundAux};
 `;
 
+export const GroupTitle = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const DateTitle = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.regular};
+  font-size: ${RFValue(14)}px;
+`;
+
+    
 export const Produto = styled.Text`
   font-family: ${({ theme }) => theme.fonts.bold};
   font-size: ${RFValue(16)}px; 
@@ -118,12 +130,12 @@ export const Total = styled.View`
   align-items: flex-end;
   border-top-width: 1px;
   border-style: solid;
-  border-color:  ${({theme})=>theme.colors.backgroundButton};
-  background-color: ${({theme})=>theme.colors.background};
+  border-color:  ${({ theme }) => theme.colors.backgroundButton};
+  background-color: ${({ theme }) => theme.colors.background};
 `;
 
 export const TextTotal = styled.Text`
   font-size: ${RFValue(14)}px;
-  color: ${({theme})=>theme.colors.text};
-  font-family: ${({theme})=>theme.fonts.bold};
+  color: ${({ theme }) => theme.colors.text};
+  font-family: ${({ theme }) => theme.fonts.bold};
 `;
