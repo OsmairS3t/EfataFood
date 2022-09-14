@@ -42,6 +42,7 @@ export function Produtos() {
 
   function handleCloseModalNewProduct() {
     setIsModalNewOpen(false);
+    loadData();
   }
 
   function handleOpenModalSellProduct(prod: IProduto) {
@@ -56,20 +57,20 @@ export function Produtos() {
   async function loadData() {
     const response = await AsyncStorage.getItem(keyProducts);
     const productsData = response ? JSON.parse(response) : [];
-/*     const productsFormatted: IProduto[] = productsData
-      .map((item: IProduto) => {
-        const price = Number(item.preco).toLocaleString('pt-BR', {
-          style: 'currency',
-          currency: 'BRL'
-        });
-        return {
-          id: item.id,
-          nome: item.nome,
-          foto: item.foto,
-          ingredientes: item.ingredientes,
-          preco: price,
-        }
-      }); */
+    /*     const productsFormatted: IProduto[] = productsData
+          .map((item: IProduto) => {
+            const price = Number(item.preco).toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL'
+            });
+            return {
+              id: item.id,
+              nome: item.nome,
+              foto: item.foto,
+              ingredientes: item.ingredientes,
+              preco: price,
+            }
+          }); */
     setListProdutos(productsData);
   }
 
@@ -100,8 +101,8 @@ export function Produtos() {
         data={listProdutos}
         style={{ flex: 1, width: '100%' }}
         renderItem={({ item }) => (
-          <CardProduct 
-            produto={item} onPress={() => handleOpenModalSellProduct(item)} 
+          <CardProduct
+            produto={item} onPress={() => handleOpenModalSellProduct(item)}
           />
         )}
       />
